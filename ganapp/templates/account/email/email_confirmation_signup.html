@@ -1,0 +1,17 @@
+{% autoescape off %}
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2>Hello {{ user.username }},</h2>
+
+        <p>Thanks for signing up for our website! To complete your registration, please confirm your email address by clicking the link below.</p>
+
+        <a href="http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}">Confirm my email address</a>
+
+        <p>If you did not make this request, please ignore this email.</p>
+
+        <p>Best regards,</p>
+        <p>Your Team</p>
+    </body>
+</html>
+{% endautoescape %}
