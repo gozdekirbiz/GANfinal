@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'settings' %}">
                             <i class="bi bi-gear-fill"></i> Settings
                         </a>
                     </li>
@@ -50,10 +50,10 @@
                         <div class="title">
                             <h1>Stil Aktarımı</h1>
                         </div>
-                
+
                         <div class="style-description">
                             <label for="style">Select a style:</label>
-                            <select id="style" class="style-select" name="selectOption" >
+                            <select id="style" class="style-select" name="selectOption">
                                 <option value="cartoon">CartoonGan</option>
                                 <option value="monet">CycleGan - Monet</option>
                                 <option value="vangogh">CycleGan - Vangogh</option>
@@ -61,24 +61,26 @@
                                 <option value="ukiyoe">CycleGan - Ukiyoe</option>
                             </select>
                         </div>
-                        
-                
+
+
                         <div class="center">
                             <div class="dropzone">
                                 <label for="file-input" class="upload-label">
-                                    <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" id="uploaded-image" />
+                                    <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon"
+                                        id="uploaded-image" />
                                     <span class="upload-text">Drop file to upload</span>
                                 </label>
-                                <input type="file" id="file-input" class="upload-input" name="image" onchange="showImagePreview(event)" />
+                                <input type="file" id="file-input" class="upload-input" name="image"
+                                    onchange="showImagePreview(event)" />
                             </div>
                         </div>
-                        
+
                         <div class="upload-button-container">
                             <button type="submit" id="upload-button" class="btn">Upload file</button>
                         </div>
                     </div>
-    
-    
+
+
                     <!-- Loading Overlay -->
                     <div id="upload-section">
                         <div id="loading-overlay">
@@ -86,8 +88,8 @@
                             <p class="loading-text">AI is working...</p>
                         </div>
                     </div>
-                    
-                    
+
+
                 </form>
             </div>
         </div>

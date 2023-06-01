@@ -1,3 +1,4 @@
+// Retrieve CSRF token from cookies
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -14,6 +15,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Set CSRF token for AJAX requests
 let csrftoken = getCookie('csrftoken');
 
 $.ajaxSetup({
@@ -26,13 +28,13 @@ $.ajaxSetup({
 
 $(".delete-image").click(function () {
     var imageId = $(this).data("id");
-    console.log("Image ID: ", imageId);  // Add this line
+    console.log("Image ID: ", imageId);
 
     $.ajax({
         url: '/delete_image/' + imageId + '/',
         type: 'POST',
         data: {
-            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
+            csrfmiddlewaretoken: csrftoken
         },
         success: function (response) {
             if (response.success) {
@@ -42,51 +44,92 @@ $(".delete-image").click(function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('BurayaGiriyor');
+$(document).ready(function () {
+    $('.nav-link').click(function (e) {
+        if ($(this).attr('data-bs-toggle') === 'tab') {
+            e.preventDefault();
+            $('.nav-link').removeClass('active');
+            $(this).addClass('active');
+            $('.tab-pane').removeClass('show active');
 
-    var loadingOverlay = document.getElementById('loading-overlay');
-    var fileInput = document.getElementById('file-input');
-    var styleSelect = document.getElementById('style');
-    var uploadButton = document.getElementById('upload-button');
-
-    uploadButton.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        if (fileInput.files.length > 0) {
-            loadingOverlay.style.display = 'block';
-            uploadButton.disabled = true;
-
-            var formData = new FormData();
-            formData.append('image', fileInput.files[0]);
-            formData.append('selectOption', styleSelect.value);  // changed from 'style' to 'selectOption'
-
-            $.ajax({
-                url: '/home/',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    if (response.success) {
-                        console.log('Art generated successfully');
-                        location.reload();
-                    } else {
-                        console.log('Error occurred');
-                    }
-                    loadingOverlay.style.display = 'none';
-                    uploadButton.disabled = false;
-                },
-                error: function () {
-                    console.log('Error occurred');
-                    loadingOverlay.style.display = 'none';
-                    uploadButton.disabled = false;
-                }
-            });
+            var target = $($(this).attr('href'));
+            target.addClass('show active');
         }
     });
 
-    loadingOverlay.style.display = 'none';
+
+
+
+    // Change password form submission
+    $('#change-password-form').on('submit', function (e) {
+        e.preventDefault();
+        var oldPassword = $('#current-password').val();
+        var newPassword1 = $('#new-password').val();
+        var newPassword2 = $('#confirm-new-password').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/change_password/",
+            data: {
+                'old_password': oldPassword,
+                'new_password1': newPassword1,
+                'new_password2': newPassword2
+            },
+            success: function (response) {
+                // Handle success
+                if (response.success) {
+                    console.log("Password successfully changed.");
+                } else {
+                    console.log("Password change failed: ", response.message);
+                }
+            },
+            error: function (response) {
+                // Handle error
+                console.log("Error occurred while changing password.", response);
+            }
+        });
+    });
+
+
+    // Delete account form submission
+    $('#delete-account-form').on('submit', function (e) {
+        e.preventDefault();
+        var password = $('#confirm-password').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/delete_account/",
+            data: {
+                'confirm_password': password
+            },
+            success: function (response) {
+                console.log("Account successfully deleted.");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error occurred while deleting account.");
+                console.log(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
+
+    // Send suggestion form submission
+    $('#send-suggestion-form').on('submit', function (e) {
+        e.preventDefault();
+        var suggestion = $('#suggestion').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/send_suggestion/",
+            data: {
+                'suggestion': suggestion
+            },
+            success: function (response) {
+                console.log("Suggestion successfully sent.");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error occurred while sending suggestion.");
+                console.log(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
 });
-
-
