@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Signup{% endblock %}
 
@@ -14,30 +15,44 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="username">Username:</label>
-                        <input type="text" name="username" class="form-control" required value="{{ form.username.value|default:'' }}">
+                        <input type="text" name="username" class="form-control" required
+                            value="{{ form.username.value|default:'' }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" name="email" class="form-control" required value="{{ form.email.value|default:'' }}">
+                        <input type="email" name="email" class="form-control" required
+                            value="{{ form.email.value|default:'' }}">
                     </div>
                     <div class="form-group">
                         <label for="password1">Password:</label>
-                        <input type="password" name="password1" class="form-control" required value="{{ form.password1.value|default:'' }}">
+                        <input type="password" name="password1" class="form-control" required
+                            value="{{ form.password1.value|default:'' }}">
                     </div>
                     <div class="form-group">
                         <label for="password2">Confirm Password:</label>
-                        <input type="password" name="password2" class="form-control" required value="{{ form.password2.value|default:'' }}">
+                        <input type="password" name="password2" class="form-control" required
+                            value="{{ form.password2.value|default:'' }}">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="kvkk_accept" id="kvkk-accept"
+                                required>
+                            <label class="form-check-label" for="kvkk-accept">
+                                I accept the terms of the <a href="{% url 'kvkk' %}" target="_blank">Kişisel Verileri
+                                    Koruma Kanunu</a>.
+                            </label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Signup</button>
-                    
+
                     {% if messages %}
-                        <div class="card bg-danger text-white mt-3">
-                            <div class="card-body">
+                    <div class="card bg-danger text-white mt-3">
+                        <div class="card-body">
                             {% for message in messages %}
-                                <li>{{ message }}</li>
+                            <li>{{ message }}</li>
                             {% endfor %}
-                            </div>
                         </div>
+                    </div>
                     {% endif %}
                 </form>
                 {% if error %}

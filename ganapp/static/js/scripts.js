@@ -30,19 +30,79 @@ $(".delete-image").click(function () {
     var imageId = $(this).data("id");
     console.log("Image ID: ", imageId);
 
+    // Store the reference to the current element
+    var $imageElement = $(this).closest('.col');
+
     $.ajax({
         url: '/delete_image/' + imageId + '/',
         type: 'POST',
         data: {
-            csrfmiddlewaretoken: csrftoken
+            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
         },
         success: function (response) {
             if (response.success) {
-                $('#image-' + imageId).remove();
+                // Remove the image element immediately
+                $imageElement.remove();
             }
         }
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('BurayaGiriyor');
+
+    var loadingOverlay = document.getElementById('loading-overlay');
+    var fileInput = document.getElementById('file-input');
+    var styleSelect = document.getElementById('style');
+    var uploadButton = document.getElementById('upload-button');
+
+    if (loadingOverlay && fileInput && styleSelect && uploadButton) {
+        uploadButton.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            if (fileInput.files.length > 0) {
+                loadingOverlay.style.display = 'block';
+                uploadButton.disabled = true;
+
+                var formData = new FormData();
+                formData.append('image', fileInput.files[0]);
+                formData.append('selectOption', styleSelect.value);
+
+                $.ajax({
+                    url: '/home/',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response); // Log the response to check its structure
+
+                        // Check if the response indicates success or failure
+                        if (response && response.hasOwnProperty('success') && response.success) {
+                            console.log('Art generated successfully');
+                            // Redirect to the result page or perform any other necessary actions
+                            location.reload();
+                        } else {
+                            console.log('Error occurred');
+                        }
+
+                        loadingOverlay.style.display = 'none';
+                        uploadButton.disabled = false;
+                    },
+                    error: function () {
+                        console.log('Error occurred');
+                        loadingOverlay.style.display = 'none';
+                        uploadButton.disabled = false;
+                    }
+                });
+            }
+        });
+
+        loadingOverlay.style.display = 'none';
+    }
+});
+
 
 $(document).ready(function () {
     $('.nav-link').click(function (e) {

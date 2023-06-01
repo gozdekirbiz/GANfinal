@@ -25,6 +25,15 @@ from django.contrib.auth import authenticate, login
 from django.urls import reverse
 from django.shortcuts import redirect
 
+from django.shortcuts import render
+from .models import UserImage
+
+
+def result_view(request):
+    user_images = UserImage.objects.filter(user=request.user).last()
+    print(user_images)
+    return render(request, "result.html", {"user_images": user_images})
+
 
 class CustomLoginView(LoginView):
     def form_valid(self, form):
@@ -53,6 +62,10 @@ class CustomLoginView(LoginView):
 def logout_view(request):
     logout(request)
     return redirect("login")
+
+
+def kvkk(request):
+    return render(request, "kvkk.html")
 
 
 @login_required

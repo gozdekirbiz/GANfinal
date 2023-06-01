@@ -1,10 +1,24 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
 body {
     background-color: #222 !important;
+    font-family: "Open Sans", Helvetica, sans-serif;
 }
 
 .card {
     background-color: #333;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.card-body>h5.card-title {
+    margin-bottom: 0.5rem;
+}
+
+.card-body>p.card-text {
+    margin-bottom: 0.5rem;
 }
 
 .card-title,
@@ -14,7 +28,21 @@ h1.mt-4 {
 }
 
 .image-card {
+    height: 100%;
+}
+
+.image-wrapper {
     position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    overflow: hidden;
+}
+
+.image-item {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
 .delete-button {
@@ -35,22 +63,17 @@ h1.mt-4 {
     width: 200px;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
-
 .frame {
     position: absolute;
     top: 50%;
-    left: 50%;
     width: 400px;
     height: 450px;
-    margin-top: -200px;
-    margin-left: -200px;
-    border-radius: 2px;
+    border-radius: 20px;
     box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
     background: linear-gradient(to top right, darkmagenta 0%, hotpink 100%);
     color: #333;
-    font-family: "Open Sans", Helvetica, sans-serif;
+    transform: translate(-50%, -50%);
 }
 
 .center {
@@ -75,30 +98,44 @@ h1.mt-4 {
     margin-bottom: 10px;
     border-bottom: 1px solid #999;
     text-align: center;
+
 }
 
 
 .title h1 {
     font-size: 24px;
     font-weight: 300;
-    color: #817a7a;
+    color: #ffffff;
+
 }
 
 .style-description {
-    text-align: center;
     margin-bottom: 20px;
 }
 
 .style-description label {
-    color: #817a7a;
+    color: #ffffff;
     font-size: 16px;
+    margin-right: 10px;
 }
 
 .style-select {
     background-color: #f6d9e2;
     color: #333;
-    padding: 5px;
-    border-radius: 3px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    width: 200px;
+    max-width: 100%;
+}
+
+.hot-pink {
+    color: hotpink;
+}
+
+.sidebar .nav-link {
+    color: white;
 }
 
 .dropzone {
@@ -109,29 +146,34 @@ h1.mt-4 {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .upload-label {
+
+}
+
+.upload-label {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-  }
-  
-  .upload-icon {
+
+}
+
+.upload-icon {
     width: 180px;
     height: 180px;
     margin-bottom: 10px;
-  }
-  
-  .upload-text {
+
+}
+
+.upload-text {
     font-size: 16px;
-  }
-  
-  .upload-input {
+
+}
+
+.upload-input {
     display: none;
-  }
+}
+
 /*   
 .upload-icon {
     margin: 25px 2px 2px 2px;
@@ -154,24 +196,28 @@ h1.mt-4 {
     display: flex;
     justify-content: center;
 }
+
 .btn {
     display: block;
     width: 140px;
     height: 40px;
     background: darkmagenta;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 15px;
     border: 0;
-    box-shadow: 0 3px 0 0 hotpink;
+    /*box-shadow: 0 3px 0 0 hotpink;*/
     transition: all 0.3s ease-in-out;
     font-size: 14px;
     margin: 0 auto;
+
 }
 
 
 .btn:hover {
     background: rebeccapurple;
     box-shadow: 0 3px 0 0 deeppink;
+    color: #fff;
+
 }
 
 .loading-overlay {
@@ -190,10 +236,14 @@ h1.mt-4 {
     width: 40px;
     height: 40px;
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
+    border-top: 4px solid #ab0091;
     border-radius: 50%;
     animation: spin 2s linear infinite;
+    margin-top: 50px;
+    margin-left: 20px;
+    /* Adjust this value to fine-tune the positioning */
 }
+
 
 
 @keyframes spin {
@@ -213,7 +263,17 @@ h1.mt-4 {
     text-align: center;
     /* Add this line to center the text */
 }
-.custom-image{
+
+.custom-image {
     height: 200px;
     width: auto;
+}
+
+.custom-message {
+    background-color: #4caf50;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 10px;
 }
