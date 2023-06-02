@@ -1,7 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Hesap Aktivasyonu Başarılı</h2>
-    <p>Tebrikler! Hesabınız başarıyla aktive edildi.</p>
-    <p><a href="{% url 'login' %}">Giriş Yap</a></p>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Hesap Aktivasyonu Başarılı
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-white">
+                        Tebrikler! Hesabınız başarıyla aktive edildi.
+                    </p>
+                    <p>
+                        <a href="{% url 'login' %}" class="btn btn-primary">Giriş Yap</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

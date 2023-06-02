@@ -36,6 +36,9 @@ def getModel(style):
         return CycleGANGenerator(style)
 
 
+from django.http import JsonResponse
+
+
 @login_required
 def home_view(request):
     if request.method == "POST":
@@ -51,18 +54,21 @@ def home_view(request):
                     user=request.user,
                     image=request.FILES["image"],
                     output_image=cartoon_image,
+                    style=style,
                 )
                 user_image.save()
                 # Add delay to simulate AI processing time
                 time.sleep(5)  # Adjust the delay duration as needed
-                print("yes")
+                return JsonResponse({"success": True})
         else:
-            print(form.errors.as_data())
-
+            return JsonResponse({"success": False, "errors": form.errors.as_json()})
     else:
         form = ImageUploadForm()
         user_images = UserImage.objects.filter(user=request.user).last()
         return render(request, "home.html", {"form": form, "user_images": user_images})
 
-    print("no")
-    return render(request, "result.html")
+
+@login_required
+def result_view(request):
+    user_images = UserImage.objects.filter(user=request.user).last()
+    return render(request, "result.html", {"user_images": user_images})

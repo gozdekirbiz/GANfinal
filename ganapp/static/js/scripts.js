@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (response && response.hasOwnProperty('success') && response.success) {
                             console.log('Art generated successfully');
                             // Redirect to the result page or perform any other necessary actions
-                            location.reload();
+                            window.location.href = '/result/';
                         } else {
                             console.log('Error occurred');
                         }

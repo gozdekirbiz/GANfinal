@@ -2,23 +2,22 @@
 {% load static %}
 
 {% block content %}
-<h2>Your Generated Images</h2>
+<h2 class="baslik">Üretilen Görselleriniz</h2>
 <div class="container">
     <div class="row row-cols-1 row-cols-md-3">
         {% for user_image in user_images %}
         <div class="col mb-4">
-            <div class="card h-100">
+            <div id="archiveCard" class="card h-100">
                 <div class="image-wrapper">
                     <img src="{{ user_image.output_image.url }}" alt="Generated image" class="card-img-top image-item">
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Generated Image</h5>
-                    <p class="card-text">This image was generated using our GAN algorithm.</p>
-                    <a href="{{ user_image.output_image.url }}" class="btn btn-primary">View Full Size</a>
+                <div class="card-body border-0">
+                    <p class="card-text">Bu görsel {{ user_image.style }} stili ile üretildi.</p>
                 </div>
-                <div class="card-footer d-flex justify-content-center">
+                <div class="card-footer border-0 d-flex justify-content-between">
                     <button type="button" class="btn btn-danger delete-image"
                         data-id="{{ user_image.id }}">Delete</button>
+                    <a href="{{ user_image.output_image.url }}" class="btn btn-primary">Tam Boyut</a>
                 </div>
             </div>
         </div>

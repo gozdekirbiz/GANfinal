@@ -8,28 +8,28 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Signup</h3>
+                <h3 class="card-title">Kaydol</h3>
             </div>
             <div class="card-body">
                 <form method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="username">Username:</label>
+                        <label for="username">Kullanıcı Adı</label>
                         <input type="text" name="username" class="form-control" required
                             value="{{ form.username.value|default:'' }}">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email:</label>
+                        <label for="email">Eposta</label>
                         <input type="email" name="email" class="form-control" required
                             value="{{ form.email.value|default:'' }}">
                     </div>
                     <div class="form-group">
-                        <label for="password1">Password:</label>
+                        <label for="password1">Şifre</label>
                         <input type="password" name="password1" class="form-control" required
                             value="{{ form.password1.value|default:'' }}">
                     </div>
                     <div class="form-group">
-                        <label for="password2">Confirm Password:</label>
+                        <label for="password2">Şifreyi Onaylayın</label>
                         <input type="password" name="password2" class="form-control" required
                             value="{{ form.password2.value|default:'' }}">
                     </div>
@@ -38,22 +38,25 @@
                             <input class="form-check-input" type="checkbox" name="kvkk_accept" id="kvkk-accept"
                                 required>
                             <label class="form-check-label" for="kvkk-accept">
-                                I accept the terms of the <a href="{% url 'kvkk' %}" target="_blank">Kişisel Verileri
-                                    Koruma Kanunu</a>.
+                                <a href="{% url 'kvkk' %}" target="_blank" class="purple-link">Kişisel Verileri
+                                    Koruma Kanunu</a>'nu kabul ediyorum.
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Signup</button>
+                    <button type="submit" class="btn btn-primary">Kaydol</button>
 
-                    {% if messages %}
+                    <!-- {% if messages %}
                     <div class="card bg-danger text-white mt-3">
-                        <div class="card-body">
+                        <div class="card-body{% if not messages %} d-none{% endif %}">
                             {% for message in messages %}
+                            {% if not "You have signed out" in message.message %}
                             <li>{{ message }}</li>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </div>
                     {% endif %}
+                -->
                 </form>
                 {% if error %}
                 <div class="alert alert-danger mt-3">{{ error }}</div>

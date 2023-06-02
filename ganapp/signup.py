@@ -65,7 +65,7 @@ def signup(request):
             print("Email Recipient:", user.email)
 
             context = {"form": form}
-            return render(request, "account/email_sent.html", context)
+            return render(request, "account/email_confirmation_message.html", context)
         else:
             # Handle errors...
             error_occurred = False

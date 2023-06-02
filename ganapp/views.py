@@ -29,12 +29,6 @@ from django.shortcuts import render
 from .models import UserImage
 
 
-def result_view(request):
-    user_images = UserImage.objects.filter(user=request.user).last()
-    print(user_images)
-    return render(request, "result.html", {"user_images": user_images})
-
-
 class CustomLoginView(LoginView):
     def form_valid(self, form):
         # Retrieve username and password from the form
@@ -57,11 +51,6 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse("home")  # Replace 'home' with the desired URL for regular users
-
-
-def logout_view(request):
-    logout(request)
-    return redirect("login")
 
 
 def kvkk(request):
@@ -177,3 +166,12 @@ def send_suggestion(request):
 
 def settings(request):
     return render(request, "settings.html")
+
+
+from django.shortcuts import redirect
+from django.contrib.auth import logout
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("account_login")

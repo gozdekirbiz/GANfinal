@@ -12,7 +12,6 @@ class Photo(models.Model):
 class GeneratedImage(models.Model):
     input_image = models.ImageField(upload_to="input_images/")
     output_image = models.ImageField(upload_to="output_images/")
-
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -23,6 +22,7 @@ class UserImage(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="original_images/")
     output_image = models.ImageField(upload_to="output_images/", null=True, blank=True)
+    style = models.CharField(max_length=20, default="Unknown")
 
 
 from django.contrib.auth import get_user_model

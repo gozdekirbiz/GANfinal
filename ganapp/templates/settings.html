@@ -7,17 +7,17 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="pills-change-password-tab" data-bs-toggle="pill"
                 data-bs-target="#pills-change-password" type="button" role="tab" aria-controls="pills-change-password"
-                aria-selected="true">Change Password</button>
+                aria-selected="true">Şifreyi değiştir</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-delete-account-tab" data-bs-toggle="pill"
                 data-bs-target="#pills-delete-account" type="button" role="tab" aria-controls="pills-delete-account"
-                aria-selected="false">Delete Account</button>
+                aria-selected="false">Hesabı sil</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-send-suggestion-tab" data-bs-toggle="pill"
                 data-bs-target="#pills-send-suggestion" type="button" role="tab" aria-controls="pills-send-suggestion"
-                aria-selected="false">Send Suggestion</button>
+                aria-selected="false">Öneri ve Şikayetler</button>
         </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
@@ -25,47 +25,46 @@
             aria-labelledby="pills-change-password-tab">
             <form id="change-password-form">
                 <div class="mb-3">
-                    <label for="current-password" class="form-label" style="color: white;">Current Password</label>
+                    <label for="current-password" class="form-label" style="color: white;">Şu anki şifreniz</label>
                     <input type="password" class="form-control" id="current-password">
                 </div>
                 <div class="mb-3">
-                    <label for="new-password" class="form-label" style="color: white;">New Password</label>
+                    <label for="new-password" class="form-label" style="color: white;">Yeni Şifre</label>
                     <input type="password" class="form-control" id="new-password">
                 </div>
                 <div class="mb-3">
-                    <label for="confirm-new-password" class="form-label" style="color: white;">Confirm New
-                        Password</label>
+                    <label for="confirm-new-password" class="form-label" style="color: white;">Yeni Şifre Onayı</label>
                     <input type="password" class="form-control" id="confirm-new-password">
                 </div>
-                <button type="submit" class="btn btn-primary">Change Password</button>
+                <button type="submit" class="btn btn-primary">Şifremi değiştir</button>
             </form>
         </div>
         <div class="tab-pane fade" id="pills-delete-account" role="tabpanel" aria-labelledby="pills-delete-account-tab">
-            <h3 style="color: white;">Delete Account</h3>
-            <p style="color: white;">Are you sure you want to delete your account? This action cannot be undone.</p>
+            <h3 style="color: white;">Hesabı Sil</h3>
+            <p style="color: white;">Hesabınızı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p>
             <form id="delete-account-form">
                 <div class="mb-3">
-                    <label for="confirm-password" class="form-label" style="color: white;">Confirm Password</label>
+                    <label for="confirm-password" class="form-label" style="color: white;">Şifrenizi girin</label>
                     <input type="password" class="form-control" id="confirm-password">
                 </div>
-                <button type="submit" class="btn btn-danger">Delete Account</button>
+                <button type="submit" class="btn btn-danger">Hesabımı sil</button>
             </form>
         </div>
         <div class="tab-pane fade" id="pills-send-suggestion" role="tabpanel"
             aria-labelledby="pills-send-suggestion-tab">
             <form id="send-suggestion-form">
                 <div class="mb-3">
-                    <label for="suggestion" class="form-label" style="color: white;">Your Suggestion</label>
+                    <label for="suggestion" class="form-label" style="color: white;">Öneri veya şikayet</label>
                     <textarea class="form-control" id="suggestion" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-success">Send Suggestion</button>
+                <button type="submit" class="btn btn-success">Yolla</button>
             </form>
         </div>
     </div>
 </div>
 <div style="margin-top: 20px;">
     <a href="/home" class="btn btn-light mb-2">
-        <i class="bi bi-arrow-left"></i> Back to Home
+        <i class="bi bi-arrow-left"></i> Anasayfaya dön
     </a>
 </div>
 <script src="{% static 'js/scripts.js' %}"></script>

@@ -1,17 +1,14 @@
-{% autoescape off %}
-<!DOCTYPE html>
-<html>
-    <body>
-        <h2>Hello {{ user.username }},</h2>
+{% extends "base.html" %}
 
-        <p>Thanks for signing up for our website! To complete your registration, please confirm your email address by clicking the link below.</p>
-
-        <a href="http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}">Confirm my email address</a>
-
-        <p>If you did not make this request, please ignore this email.</p>
-
-        <p>Best regards,</p>
-        <p>Your Team</p>
-    </body>
-</html>
-{% endautoescape %}
+{% block content %}
+<div class="container">
+    <h2>Merhaba {{ user.username }},</h2>
+    <p>Web sitemize kaydolduğunuz için teşekkür ederiz! Kaydınızı tamamlamak için lütfen aşağıdaki bağlantıya tıklayarak
+        e-posta adresinizi onaylayın.</p>
+    <a href="http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}" class="btn btn-primary">Mail
+        adresimi onayla</a>
+    <p>Bu talebi siz yapmadıysanız, lütfen bu e-postayı dikkate almayın.</p>
+    <p>İyi günler,</p>
+    <p>lilyumGAN</p>
+</div>
+{% endblock %}

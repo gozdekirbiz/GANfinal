@@ -6,34 +6,34 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
+    <div class="row justify-content-center align-items-center">
         <!-- Sidebar -->
-        <div class="col-md-2 d-none d-md-block bg-dark sidebar">
+        <div class="col-md-2 d-none d-md-block sidebar bg-dark">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="#" alt="Logo" class="sidebar-logo"> <!-- Replace # with your logo URL -->
+                            <img src="{% static 'images/logo.png' %}" alt="Logo" class="sidebar-logo">
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}">
-                            <i class="bi bi-palette-fill"></i> Generate Art
+                            <i class="bi bi-palette-fill hot-pink"></i> Generate Art
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'archive' %}">
-                            <i class="bi bi-archive-fill"></i> Archive
+                            <i class="bi bi-archive-fill hot-pink"></i> Archive
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-gear-fill"></i> Settings
+                        <a class="nav-link" href="{% url 'settings' %}">
+                            <i class="bi bi-gear-fill hot-pink"></i> Settings
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout/">
-                            <i class="bi bi-box-arrow-right"></i> Logout
+                        <a class="nav-link" href="{% url 'account_logout' %}">
+                            <i class="bi bi-box-arrow-right hot-pink"></i> Logout
                         </a>
                     </li>
                 </ul>
@@ -42,19 +42,19 @@
 
         <!-- Art Generation -->
         <div class="col-md-10 px-4">
-            <div class="container">
-                <h1 class="mt-4 text-white">Stil Aktarımı Gerçekleşti</h1>
+            <div class="container text-center">
+                <h1 class="mt-4">Stil Aktarımı Gerçekleşti</h1>
                 {% if user_images %}
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-md-6">
-                        <h3 class="text-white">Input</h3>
+                        <h3>Input</h3>
                         <img src="{{ user_images.image.url }}" alt="Your original image" class="img-fluid"
-                            style="height: 350px; width: auto;">>
+                            style="height: 350px; width: auto;">
                     </div>
                     <div class="col-md-6">
-                        <h3 class="text-white">Output</h3>
+                        <h3>Output</h3>
                         <img src="{{ user_images.output_image.url }}" alt="Your output image" class="img-fluid"
-                            style="height: 350px; width: auto;">>
+                            style="height: 350px; width: auto;">
                     </div>
                 </div>
                 {% else %}
