@@ -306,8 +306,8 @@ h1.mt-4 {
 }
 
 .nav-pills .nav-link {
-    background-color: #222;
-    color: white;
+    background-color: #f2f2f2;
+    color: #282828;
 }
 
 .nav-pills .nav-link.active {
@@ -322,7 +322,7 @@ h1.mt-4 {
 }
 
 .tab-pane {
-    background-color: #333;
+    background-color: #aeaeae;
     color: white;
     padding: 20px;
     border-radius: 5px;
